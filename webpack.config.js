@@ -14,6 +14,10 @@ module.exports={
         use:['style-loader','css-loader']
       },
       {
+        test:/\.js/,
+        use:['babel-loader']
+      },
+      {
         test:/\.(jpg|jpeg|png|gif|svg)$/,
         use: [
           {
@@ -23,7 +27,11 @@ module.exports={
             }
           }
         ]
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/,
+        use:['url-loader']
       }
     ]
   }
-}
+};
