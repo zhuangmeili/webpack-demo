@@ -75,7 +75,29 @@ webpack 资源管理
     设置url-loader limit  1000，，则icon大小小于1KB的话，会使用base64形式
 
 ////////////////////////////////////////////////////////////////////////////////////
+管理输出
+1、webpack.config.js
+    entry: "./src/main.js",
+    改为
+    entry: {
+        app: './src/index.js',
+        print: './src/print.js'
+    },
 
+
+    filename: 'bundle.js',
+    改为
+    filename: '[name].bundle.js',
+
+2、安装插件
+    html-webpack-plugin
+    这个插件
+    会默认生成 index.html,会生成新的把原来的替换掉，所有的bundle都会自动添加到html中
+
+
+3、清理/dist 文件夹
+    通常，在每次构建前清理 /dist 文件夹，是比较推荐的做法，因此只会生成用到的文件。让我们完成这个需求。
+    clean-webpack-plugin
 
 
 ////////////////////////////////////////////////////////////////////////////////////
