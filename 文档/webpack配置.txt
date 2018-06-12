@@ -5,17 +5,17 @@ webpack基础配置
     "main":"index.js", //去掉
 
 2、创建bundle 文件
-webpack-demo
+    webpack-demo
     |— dist
         |— index.html
     |- src   //源文件
         |- index.js
     |— webpack.config.js
 
-说明：
-dist “分发”代码是构建过程产生的代码最小化和优化后的“输出”目录，最终将在浏览器中加载：
-输入命令 会输出main.js
-$ npx webpack
+    说明：
+    dist “分发”代码是构建过程产生的代码最小化和优化后的“输出”目录，最终将在浏览器中加载：
+    输入命令 会输出main.js
+    $ npx webpack
 
 3、使用ES6特性，请确保你在webpack的loader系统中使用 Babel的转译器
 
@@ -37,8 +37,42 @@ $ npx webpack
 
 ////////////////////////////////////////////////////////////////////////////////////
 webpack 资源管理
+1、加载css
+    安装 style-loader  css-loader
 
+    webpack.config.js 的module配置
+    module:{
+        rules:[
+            {
+                test:/\.css$/,
+                use:['style-loader','css-loader']
+            }
+        ]
+    }
 
+2、ele元素的classList 属性
+    var ele=document.createElement('div');
+    ele.classList.add('cur');
+    classList  返回元素的类名
+    可以通过 add(), remove()方法修改它
+
+3、加载图片
+    安装 url-loader
+
+    webpack .config.js 的module配置如下,增加一条rule
+    module:{
+        rules:[
+            {
+                test:/\.(jpg|jpeg|png|gif|svg)$/,
+                use:['url-loader']
+            }
+        ]
+    }
+
+    拓展  如果想压缩优化图片，可以使用
+    image-webpack-loader  //压缩图片
+    url-loader
+    设置url-loader limit  1000，，则icon大小小于1KB的话，会使用base64形式
 
 ////////////////////////////////////////////////////////////////////////////////////
 
