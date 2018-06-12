@@ -1,0 +1,47 @@
+////////////////////////////////////////////////////////////////////////////////////
+webpack基础配置
+1、package.json
+    private:true,  //我们确保安装包是私有的
+    "main":"index.js", //去掉
+
+2、创建bundle 文件
+webpack-demo
+    |— dist
+        |— index.html
+    |- src   //源文件
+        |- index.js
+    |— webpack.config.js
+
+说明：
+dist “分发”代码是构建过程产生的代码最小化和优化后的“输出”目录，最终将在浏览器中加载：
+输入命令 会输出main.js
+$ npx webpack
+
+3、使用ES6特性，请确保你在webpack的loader系统中使用 Babel的转译器
+
+4、使用一个配置文件webpack.config.js(这时候可以把 webpack-cli依赖去掉了)
+    可以取代webpack-cli方式的配置文件
+    如果webpack.config.js存在，则webpack默认选择使用它
+    如下，我们使用 --config选项只是表明，可以传递任何名称的配置文件
+    对于拆分成多个文件的复杂配置非常游泳；
+    $ npx webpack --config webpack.config.js
+5、npm脚本（npm scripts）
+    考虑到webpack-cli这种方式来运行本地的webpack不是特别方便，，我们可以在
+    package.json中设置一个快捷方式
+    "scripts":{
+        "build":"webpack"
+    }
+
+    如上配置好之后，可以水用
+    $ npm run build命令，来替代 npx 命令了
+
+////////////////////////////////////////////////////////////////////////////////////
+webpack 资源管理
+
+
+
+////////////////////////////////////////////////////////////////////////////////////
+
+
+
+////////////////////////////////////////////////////////////////////////////////////
