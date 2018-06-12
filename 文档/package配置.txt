@@ -1,0 +1,13 @@
+package.json的配置
+1、private
+    我们确保安装包是私有的private:true
+webpack.demo
+|- package.json
+|- dist    //分发代码是构建过程输出的目录
+    |- index.html
+|- src  //源文件
+dist目录
+
+
+
+
