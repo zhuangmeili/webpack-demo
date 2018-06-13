@@ -8,6 +8,7 @@ function component(){
 
   var btn=document.createElement('button');
   btn.innerHTML='点击我看看';
+  btn.classList.add('button');
   btn.onclick=print;
   ele.appendChild(btn);
 

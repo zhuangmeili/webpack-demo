@@ -11,6 +11,7 @@ webpack基础配置
     |- src   //源文件
         |- index.js
     |— webpack.config.js
+    |— server.js //定义一个server服务器
 
     说明：
     dist “分发”代码是构建过程产生的代码最小化和优化后的“输出”目录，最终将在浏览器中加载：
@@ -98,6 +99,71 @@ webpack 资源管理
 3、清理/dist 文件夹
     通常，在每次构建前清理 /dist 文件夹，是比较推荐的做法，因此只会生成用到的文件。让我们完成这个需求。
     clean-webpack-plugin
+////////////////////////////////////////////////////////////////////////////////////
+开发环境
+1、使用source map
+    webpack打包源文件，可能很难追踪到错误和警告在源代码的位置
+
+    为了更容易追踪错误和警告，js提供了 sourcemap功能
+    webpack.config.js 配置如下
+    devtool: "inline-source-map",
+
+2、使用观察模式
+    如果一个文件被更新，代码将会被重新编译
+    package.json
+     scripts:{
+        "watch":"webpack --watch"
+     }
+
+     npm run watch
+
+     //会自动编译修改后的模块，唯一的缺点是，为了看到修改后的实际效果，需要刷新浏览器！！！
+     为了能够自动刷新浏览器，，引入 webpack-dev-server
+3、webpack-dev-server
+    实现实时重新加载 （live reloading）
+    npm install --save-dev webpack-dev-server
+
+    修改配置文件，告诉开发服务器(dev server)，在哪里查找文件：
+    webpack.config.js
+    devServer: {
+        contentBase:'./dist'
+    },
+
+    package.json
+    "scripts":{
+        "start": "webpack-dev-server --open",
+    }
+
+    $ npm start //执行命令 浏览器自动加载页面。如果现在修改和保存任意源文件，web 服务器就会自动重新加载编译后的代码
+
+4、webpack-dev-middleware
+    可以吧webpack处理后的文件传递给一个服务器
+    安装 express  webpack-dev-middleware
+
+    webpack.config.js
+    需要配置
+    output:{
+        publicPath: '/'
+    }
+    以确保文件资源，能在 http://localhost:8006  下正确访问
+
+    创建一个server.js 建立一个express服务器
+    package.json
+    scripts:{
+        "server":"node server.js",
+    }
+
+    $ npm run server
+
+    打开浏览器，跳转到 http://localhost:8006，你应该看到你的webpack 应用程序已经运行！
+
+
+
 
 
 ////////////////////////////////////////////////////////////////////////////////////
+
+
+
+////////////////////////////////////////////////////////////////////////////////////
+
